@@ -1,0 +1,6 @@
+- name: create file chan
+  file:
+   path: /home/ubuntu/chan
+   owner: ubuntu
+   group: ubuntu
+   state: touch

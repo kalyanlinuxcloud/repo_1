@@ -1,0 +1,18 @@
+
+- name: Install java7
+  apt: openjdk-7-jre
+  apt: openjdk-7-jdk
+
+
+- name: Install java 8 preresequesits
+  apt:
+    name=python-software-properties
+- name: Add Java 8 repository
+  apt_repository:
+    repo='ppa:webupd8team/java'
+- name: Agree to oracle license
+  debconf:
+    name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+- name: Install Java 8
+  apt:
+    name=oracle-java8-installer force=yes

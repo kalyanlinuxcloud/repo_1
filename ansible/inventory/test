@@ -1,0 +1,11 @@
+[machine1]
+#192.168.152.130 ansible_ssh_user=pawan ansible_ssh_private_key_file=/home/kalyan/.ssh/id_rsa ansible_sudo_pass=pawan
+
+
+192.168.152.128 ansible_ssh_user=test ansible_ssh_private_key_file=/home/kalyan/.ssh/id_rsa ansible_sudo_pass=test
+
+
+52.26.51.132 ansible_ssh_user=ubuntu ansible_ssh_private_key_file=/home/kalyan/k_key.pem
+
+
+

@@ -1,0 +1,4 @@
+- hosts: machine1
+  become: yes
+  roles:
+    - doubletask

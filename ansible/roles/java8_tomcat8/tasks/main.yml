@@ -1,0 +1,43 @@
+- name: Install java 8 preresequesits
+  apt:
+    name=python-software-properties
+- name: Add Java 8 repository
+  apt_repository:
+    repo='ppa:webupd8team/java'
+- name: Agree to oracle license
+  debconf:
+    name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+- name: Install Java 8
+  apt:
+    name=oracle-java8-installer force=yes
+
+
+
+- name: download tomcat8.conf
+  get_url:
+    url: http://redrockdigimark.com/apachemirror/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz
+    dest: /home/pawan
+    mode: 0440
+
+- unarchive:
+    src: apache-tomcat-8.5.11.tar.gz
+    dest: /home/pawan
+    owner: pawan
+    group: pawan
+
+- lineinfile:
+    path: /home/pawan/.profile
+    insertafter: EOF
+    line: export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+    state: present
+
+    path: /home/pawan/.profile
+    insertafter: EOF
+    line: export PATH=$PATH:$JAVA_HOME/bin
+    state: present
+
+- name: Run tomcat8 shutdown
+  command: chdir=/home/pawan/apache-tomcat-8.5.11/bin ./shutdown.sh
+
+- name: Run tomcat8 startup
+  command: chdir=/home/pawan/apache-tomcat-8.5.11/bin ./startup.sh

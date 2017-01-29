@@ -1,0 +1,13 @@
+- name: install awscli
+  apt:
+    name: awscli
+    state: present
+  tags:
+     - awscl
+
+- name: install tree
+  apt:
+    name: tree
+    state: present
+  tags:
+     - tre

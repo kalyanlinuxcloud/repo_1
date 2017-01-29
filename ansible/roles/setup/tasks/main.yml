@@ -1,0 +1,21 @@
+
+- name: create directory jackie
+  file:
+   path: /home/pawan/jackie
+   owner: pawan
+   group: pawan
+   state: directory
+
+- name: create directory ansible
+  file:
+   path: /home/pawan/ansible
+   owner: pawan
+   group: pawan
+   state: directory
+
+- name: create directory cloud
+  file:
+   path: /home/pawan/ansible/cloud
+   owner: pawan
+   group: pawan
+   state: directory

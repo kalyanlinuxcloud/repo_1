@@ -1,0 +1,103 @@
+#- name: apt-get update
+#  apt:
+#    update_cache: yes
+
+
+#- name: Install apache2
+#  apt:
+#    name: apache2
+#    state: absent
+
+
+#- name: Install zip
+#  apt:
+#    name: zip
+#    state: present
+
+
+#- name: Install unzip
+#  apt:
+#    name: unzip
+#    state: present
+
+
+#- name: Install git
+#  apt:
+#    name: git
+#    state: present
+
+
+#- name: Install awscli
+#  apt:
+#    name: awscli
+#    state: present
+
+
+#- name: Install tree
+#  apt:
+#    name: tree
+#    state: present
+
+
+#- name: Install java 8 preresequesits
+#  apt:
+#    name=python-software-properties
+#- name: Add Java 8 repository
+#  apt_repository:
+#    repo='ppa:webupd8team/java'
+#- name: Agree to oracle license
+#  debconf:
+#    name=oracle-java8-installer question=shared/accepted-oracle-license-v1-1 vtype=select value=true
+#- name: Install Java 8
+#  apt:
+#    name=oracle-java8-installer force=yes
+
+
+#- name: Add Maven3 repository
+#  apt_repository:
+#    repo='ppa:andrei-pozolotin/maven3'
+#- name: apt-get update
+#  apt:
+#    update_cache: yes
+#- name: Install Maven3
+#  apt:
+#    name: maven3
+#    state: present
+
+
+#- name: add new apt repo
+#  apt_repository: repo='ppa:dirk-computer42/c42-edge-server'
+#  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
+#  environment:
+#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/lib/jvm/java-7-oracle/bin:/usr/lib/jvm/java-7-oracle/db/bin:/usr/lib/jvm/java-7-oracle/jre/bin
+
+
+#- name: Update apt cache
+#  apt: update_cache=yes
+
+
+#- name: Install Tomcat 8
+#  apt: pkg=tomcat8 state=present
+#  when: ansible_distribution == 'Ubuntu' and {{ ansible_distribution_version | version_compare('14.04', '>=') }}
+#  environment:
+#    PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/lib/jvm/java-7-oracle/bin:/usr/lib/jvm/java-7-oracle/db/bin:/usr/lib/jvm/java-7-oracle/jre/bin
+
+
+#- name: download tomcat8.conf
+#  get_url:
+#    url: http://redrockdigimark.com/apachemirror/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz
+#    dest: /home/pawan
+#    mode: 0440
+
+#- unarchive:
+#    src: apache-tomcat-8.5.11.tar.gz
+#    dest: /home/pawan
+#    owner: pawan
+#    group: pawan
+
+
+#- name: Run tomcat8 shutdown
+#  command: chdir=/home/pawan/apache-tomcat-8.5.11/bin ./shutdown.sh
+
+- name: Run tomcat8 startup
+  command: chdir=/home/pawan/apache-tomcat-8.5.11/bin ./startup.sh
